@@ -19,7 +19,6 @@ app.get('/', (req, res) => {
   res.send('Welcome to FitGifts');
 })
 
-// const CONNECTION_URL = 'mongodb+srv://calebhopkins:Mdba-1304@cluster0.lnjup.mongodb.net/fitgiftsapp?retryWrites=true&w=majority';
 const PORT = process.env.PORT|| 5000;
 
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitgifts', { useNewUrlParser: true, useUnifiedTopology: true })
