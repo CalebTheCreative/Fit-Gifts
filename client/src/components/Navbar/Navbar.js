@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { AppBar, Avatar, Button, Toolbar, Typography } from '@material-ui/core';
 
 import useStyles from './styles';
-import memories from '../../images/memories.png';
 
 const Navbar = () => {
   const classes = useStyles();
@@ -15,7 +14,6 @@ const Navbar = () => {
         <Typography component={Link} to="/" className={classes.heading} variant="h2" align="center">
           Fit Gifts
         </Typography>
-        <img className={classes.image} src={memories} alt="icon" height="60" />
       </div>
       <Toolbar classname={classes.toolbar}>
         {user ? (
