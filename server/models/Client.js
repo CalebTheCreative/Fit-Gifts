@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
 
-const postSchema = mongoose.Schema({
-    title: String,
+const clientSchema = mongoose.Schema({
+    clientName: String,
+    phone: String,
     message: String,
-    creator: String,
-    tags: [String],
     selectedFile: String,
     likeCount: {
         type: Number,
@@ -16,6 +15,6 @@ const postSchema = mongoose.Schema({
     },
 })
 
-var PostMessage = mongoose.model('PostMessage', postSchema);
+var Client = mongoose.model('Client', clientSchema);
 
-export default PostMessage;
+export default Client;
