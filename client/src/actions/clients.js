@@ -2,9 +2,9 @@ import { FETCH_ALL, CREATE, UPDATE, DELETE, LIKE } from '../constants/actionType
 
 import * as api from '../api/index.js';
 
-export const getPosts = () => async (dispatch) => {
+export const getClients = () => async (dispatch) => {
   try {
-    const { data } = await api.fetchPosts();
+    const { data } = await api.fetchClients();
 
     dispatch({ type: FETCH_ALL, payload: data });
   } catch (error) {
@@ -12,9 +12,9 @@ export const getPosts = () => async (dispatch) => {
   }
 };
 
-export const createPost = (post) => async (dispatch) => {
+export const createClient = (client) => async (dispatch) => {
   try {
-    const { data } = await api.createPost(post);
+    const { data } = await api.createClient(client);
 
     dispatch({ type: CREATE, payload: data });
   } catch (error) {
@@ -22,9 +22,9 @@ export const createPost = (post) => async (dispatch) => {
   }
 };
 
-export const updatePost = (id, post) => async (dispatch) => {
+export const updateClient = (id, client) => async (dispatch) => {
   try {
-    const { data } = await api.updatePost(id, post);
+    const { data } = await api.updateClient(id, client);
 
     dispatch({ type: UPDATE, payload: data });
   } catch (error) {
@@ -42,9 +42,9 @@ export const likePost = (id) => async (dispatch) => {
   }
 };
 
-export const deletePost = (id) => async (dispatch) => {
+export const deleteClient = (id) => async (dispatch) => {
   try {
-    await api.deletePost(id);
+    await api.deleteClient(id);
 
     dispatch({ type: DELETE, payload: id });
   } catch (error) {

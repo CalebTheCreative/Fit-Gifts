@@ -3,7 +3,6 @@ import mongoose from 'mongoose';
 const clientSchema = mongoose.Schema({
     clientName: String,
     phone: String,
-    message: String,
     selectedFile: String,
     likeCount: {
         type: Number,

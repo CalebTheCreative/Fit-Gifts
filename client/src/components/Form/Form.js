@@ -4,31 +4,31 @@ import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
 
 import useStyles from './styles';
-import { createPost, updatePost } from '../../actions/posts';
+import { createClient, updateClient } from '../../actions/clients';
 
 const Form = ({ currentId, setCurrentId }) => {
-  const [postData, setPostData] = useState({ clientName: '', phone: '', selectedFile: '' });
-  const post = useSelector((state) => (currentId ? state.posts.find((message) => message._id === currentId) : null));
+  const [clientData, setClientData] = useState({ clientName: '', phone: '', selectedFile: '' });
+  const client = useSelector((state) => (currentId ? state.clients.find((client) => client._id === currentId) : null));
   const dispatch = useDispatch();
   const classes = useStyles();
 
   useEffect(() => {
-    if (post) setPostData(post);
-  }, [post]);
+    if (client) setClientData(client);
+  }, [client]);
 
   const clear = () => {
     setCurrentId(0);
-    setPostData({ clientName: '', phone: '', selectedFile: '' });
+    setClientData({ clientName: '', phone: '', selectedFile: '' });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (currentId === 0) {
-      dispatch(createPost(postData));
+      dispatch(createClient(clientData));
       clear();
     } else {
-      dispatch(updatePost(currentId, postData));
+      dispatch(updateClient(currentId, clientData));
       clear();
     }
   };
@@ -36,10 +36,10 @@ const Form = ({ currentId, setCurrentId }) => {
   return (
     <Paper className={classes.paper}>
       <form autoComplete="off" noValidate className={`${classes.root} ${classes.form}`} onSubmit={handleSubmit}>
-        <Typography variant="h6">{currentId ? `Editing "${post.phone}"` : 'Add a Client'}</Typography>
-        <TextField name="clientName" variant="outlined" label="Client's Name" fullWidth value={postData.clientName} onChange={(e) => setPostData({ ...postData, clientName: e.target.value })} />
-        <TextField name="phone" variant="outlined" label="Phone" fullWidth value={postData.phone} onChange={(e) => setPostData({ ...postData, phone: e.target.value })} />
-        <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setPostData({ ...postData, selectedFile: base64 })} /></div>
+        <Typography variant="h6">{currentId ? `Editing "${client.phone}"` : 'Add a Client'}</Typography>
+        <TextField name="clientName" variant="outlined" label="Client's Name" fullWidth value={clientData.clientName} onChange={(e) => setClientData({ ...clientData, clientName: e.target.value })} />
+        <TextField name="phone" variant="outlined" label="Phone" fullWidth value={clientData.phone} onChange={(e) => setClientData({ ...clientData, phone: e.target.value })} />
+        <div className={classes.fileInput}><FileBase type="file" multiple={false} onDone={({ base64 }) => setClientData({ ...clientData, selectedFile: base64 })} /></div>
         <Button className={classes.buttonSubmit} variant="contained" color="primary" size="large" type="submit" fullWidth>Submit</Button>
         <Button variant="contained" color="secondary" size="small" onClick={clear} fullWidth>Clear</Button>
       </form>
