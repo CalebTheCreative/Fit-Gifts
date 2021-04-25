@@ -19,9 +19,9 @@ export const getClient = async (req, res) => {
     const { id } = req.params;
 
     try {
-        const post = await Client.findById(id);
+        const client = await Client.findById(id);
         
-        res.status(200).json(post);
+        res.status(200).json(client);
     } catch (error) {
         res.status(404).json({ message: error.message });
     }
@@ -45,7 +45,7 @@ export const updateClient = async (req, res) => {
     const { id } = req.params;
     const { phone, clientName, selectedFile } = req.body;
     
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No client with id: ${id}`);
 
     const updatedClient = { clientName, phone, selectedFile, _id: id };
 
@@ -57,21 +57,21 @@ export const updateClient = async (req, res) => {
 export const deleteClient = async (req, res) => {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No client with id: ${id}`);
 
     await Client.findByIdAndRemove(id);
 
-    res.json({ message: "Post deleted successfully." });
+    res.json({ message: "Client deleted successfully." });
 }
 
 export const likeClient = async (req, res) => {
     const { id } = req.params;
 
-    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
+    if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No client with id: ${id}`);
     
-    const post = await Client.findById(id);
+    const client = await Client.findById(id);
 
-    const updatedClient = await Client.findByIdAndUpdate(id, { likeCount: post.likeCount + 1 }, { new: true });
+    const updatedClient = await Client.findByIdAndUpdate(id, { likeCount: client.likeCount + 1 }, { new: true });
     
     res.json(updatedClient);
 }

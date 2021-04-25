@@ -8,12 +8,12 @@ import Home from './components/Home/Home';
 const App = () => (
 	<Router>
 		<Container maxWidth="lg">
-			<Navbar />\
+			<Navbar />
 			<Switch>
 				<Route path="/" exact component={Home} />
 				{/* <Route path="/auth" exact component={Auth} /> */}
 			</Switch>
-			<Home />
+			{/* <Home /> */}
 		</Container>
 	</Router>
 );
