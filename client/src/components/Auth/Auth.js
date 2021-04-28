@@ -6,8 +6,11 @@ import { useHistory } from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import useStyles from './styles';
 import Input from './Input';
+import { login, signup } from '../../actions/auth';
 
 import Icon from './icon';
+
+const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
 const Auth = () => {
 	const classes = useStyles();
@@ -15,14 +18,25 @@ const Auth = () => {
 	const history = useHistory();
 
 	const [showPassword, setShowPassword] = useState(false);
-
 	const [isSignup, setIsSignup] = useState(false);
+	const [formData, setFormData] = useState(initialState);
 
 	const handleShowPassword = () => setShowPassword((prevShowPassword) => !prevShowPassword);
 
-	const handleSubmit = () => {};
+	const handleSubmit = (e) => {
+		e.preventDefault();
+		console.log(formData);
 
-	const handleChange = () => {};
+		if (isSignup) {
+			dispatch(signup(formData), history);
+		} else {
+			dispatch(login(formData), history);
+		}
+	};
+
+	const handleChange = (e) => {
+		setFormData({ ...formData, [e.target.name]: e.target.value });
+	};
 
 	const switchMode = () => {
 		setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -73,11 +87,10 @@ const Auth = () => {
 						/>
 						{isSignup && (
 							<Input
-								name="password"
+								name="confirmPassword"
 								label="Confirm Password"
 								handleChange={handleChange}
-								type={showPassword ? 'text' : 'password'}
-								handleShowPassword={handleShowPassword}
+								type="password"
 							/>
 						)}
 					</Grid>
