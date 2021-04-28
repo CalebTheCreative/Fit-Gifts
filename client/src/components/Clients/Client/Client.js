@@ -6,7 +6,7 @@ import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import moment from 'moment';
 import { useDispatch } from 'react-redux';
 
-import { likePost, deleteClient } from '../../../actions/clients';
+import { likeClient, deleteClient } from '../../../actions/clients';
 import useStyles from './styles';
 
 const Client = ({ client, setCurrentId }) => {
@@ -27,7 +27,7 @@ const Client = ({ client, setCurrentId }) => {
         <Typography variant="body2" color="textSecondary" component="p">{client.phone}</Typography>
       </CardContent>
       <CardActions className={classes.cardActions}>
-        <Button size="small" color="primary" onClick={() => dispatch(likePost(client._id))}><ThumbUpAltIcon fontSize="small" /> Like {client.likeCount} </Button>
+        <Button size="small" color="primary" onClick={() => dispatch(likeClient(client._id))}><ThumbUpAltIcon fontSize="small" /> Like {client.likeCount} </Button>
         <Button size="small" color="primary" onClick={() => dispatch(deleteClient(client._id))}><DeleteIcon fontSize="small" /> Delete</Button>
       </CardActions>
     </Card>
