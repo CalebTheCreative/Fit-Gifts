@@ -6,11 +6,11 @@ import auth from '../middleware/auth';
 const router = express.Router();
 
 //      /api/clients/
-router.get('/', getClients);
+router.get('/', auth, getClients);
 router.post('/', auth, createClient);
 
 //      /api/clients/:id
-router.get('/:id', getClient);
+router.get('/:id', auth, getClient);
 router.patch('/:id', auth, updateClient);
 router.delete('/:id', auth, deleteClient);
 

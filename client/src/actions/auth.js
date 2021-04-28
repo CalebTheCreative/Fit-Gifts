@@ -4,7 +4,9 @@ import * as api from '../api/index.js';
 
 export const login = (formData, history) => async (dispatch) => {
 	try {
-		// login in user..
+		const { data } = await api.logIn(formData);
+
+		dispatch({ type: AUTH, data });
 
 		history.push('/');
 	} catch (err) {
@@ -14,7 +16,9 @@ export const login = (formData, history) => async (dispatch) => {
 
 export const signup = (formData, history) => async (dispatch) => {
 	try {
-		// singup in user..
+		const { data } = await api.signUp(formData);
+
+		dispatch({ type: AUTH, data });
 
 		history.push('/');
 	} catch (err) {
