@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const url = '/api/clients';
+const url = 'http://localhost:5000/clients';
 
 export const fetchClients = () => axios.get(url);
 export const createClient = (newClient) => axios.post(url, newClient);

@@ -14,8 +14,8 @@ app.use(cors());
 app.use('/api', apiRoutes);
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === 'production') {
+	app.use(express.static('client/build'));
 }
 
 app.get('*', (req, res) => {
@@ -25,10 +25,14 @@ app.get('*', (req, res) => {
 const PORT = process.env.PORT || 5000;
 
 mongoose
-	.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitgifts', {
-		useNewUrlParser: true,
-		useUnifiedTopology: true,
-	})
+	.connect(
+		process.env.MONGODB_URI ||
+			'mongodb+srv://XavierG13:Finnick2014@cluster0.kqxpg.mongodb.net/fitgifts?retryWrites=true&w=majority',
+		{
+			useNewUrlParser: true,
+			useUnifiedTopology: true,
+		}
+	)
 	.then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
 	.catch((error) => console.log(`${error} did not connect`));
 
